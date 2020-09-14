@@ -1,0 +1,56 @@
+    <html>
+    <head>
+        <title>
+            Rock Paper Scissors
+        </title>
+    </head>
+    <body>
+        <script>    
+            function playRound() {  
+                let playerAnswer = "";
+                let answerChoice = ['rock', 'paper', 'scissors'];
+
+                while (playerAnswer != "rock" && playerAnswer != "scissors" && playerAnswer != "paper") {
+                    playerAnswer = prompt("Please enter rock, paper or scissors").toLowerCase();
+                }
+                
+                let computerAnswer = answerChoice[Math.floor(Math.random() * 2)]; // chooses a random answer from the answerChoice array
+
+                if (playerAnswer == computerAnswer) {
+                    alert("You both chose " + playerAnswer + ". This round is a tie!");
+                    return "tie";
+                } else if ((playerAnswer == "rock" && computerAnswer == "scissors") ||
+                        (playerAnswer == "scissors" && computerAnswer == "paper") ||
+                        (playerAnswer == "paper" && computerAnswer == "rock")) {
+                    alert("You chose " + playerAnswer + " and the computer chose " +
+                        computerAnswer + ". You win!");
+                    return "win";
+                } else {
+                    alert("You chose " + playerAnswer + " and the computer chose " +
+                        computerAnswer + ". You lose!");
+                    return "lose";
+                }
+            }
+
+            function main() {
+                let tally = [0, 0, 0];
+
+                for (x=0; x<5; x++) {
+                    results = playRound();
+                    if (results == "win") {
+                        tally[0]++;
+                    } else if (results == "lose") {
+                        tally[1]++;
+                    } else tally[2]++;
+                }
+                alert("The final score is " + tally[0] + " win(s), " + tally[1] + " loss(es), and " +
+                    tally[2] + " tie(s)!");
+                if (tally[0] > tally[1]) {
+                    alert("Great job!"); // if more wins than losses
+                } else alert("Better luck next time!"); // if fewer wins than losses
+            }
+
+            main();
+        </script>
+    </body>
+</html>
